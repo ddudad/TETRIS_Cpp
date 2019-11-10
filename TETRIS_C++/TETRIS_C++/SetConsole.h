@@ -1,6 +1,5 @@
 #pragma once
 
-#include<iostream>
 #include<Windows.h>
 
 void Gotoxy(int x, int y);		//콘솔 커서 위치 이동

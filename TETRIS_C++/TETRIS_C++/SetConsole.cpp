@@ -2,7 +2,7 @@
 
 void Gotoxy(int x, int y)	//콘솔 커서 위치 이동
 {
-	COORD pos = { x, y };
+	COORD pos = { 2*x, y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 

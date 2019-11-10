@@ -1,5 +1,8 @@
 #include"SetGameBoard.h"
 
+int Board[SIZE_Y][SIZE_X];
+enum { MOVEBLOCK = 0, SHADOWBLOCK, FIXBLOCK, WALL, DEADLINE, EMPTY };
+
 using namespace std;
 
 void InitGameBoard()

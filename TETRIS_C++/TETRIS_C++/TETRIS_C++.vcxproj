@@ -126,10 +126,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SetConsole.cpp" />
     <ClCompile Include="SetGameBoard.cpp" />
+    <ClCompile Include="Tetris.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SetConsole.h" />
     <ClInclude Include="SetGameBoard.h" />
+    <ClInclude Include="Tetris.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

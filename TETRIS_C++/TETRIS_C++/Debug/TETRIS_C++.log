@@ -1,7 +1,2 @@
-﻿  main.cpp
-  SetConsole.cpp
-C:\Users\donal\Desktop\코딩\TETRIS_Cpp\TETRIS_C++\TETRIS_C++\SetConsole.cpp(5,17): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  SetGameBoard.cpp
-  코드를 생성하고 있습니다...
-C:\Users\donal\Desktop\코딩\TETRIS_Cpp\TETRIS_C++\TETRIS_C++\SetConsole.cpp(5,21): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+﻿  Tetris.cpp
   TETRIS_C++.vcxproj -> C:\Users\donal\Desktop\코딩\TETRIS_Cpp\TETRIS_C++\Debug\TETRIS_C++.exe

@@ -5,3 +5,6 @@
 #include"SetGameBoard.h"
 
 void NewBlockMaker();
+void BlockMove(int inputX, int inputY);
+bool CrashCheck(int inputX, int inputY);
+void BlockFix();

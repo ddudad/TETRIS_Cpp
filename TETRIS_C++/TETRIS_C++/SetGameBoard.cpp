@@ -3,7 +3,7 @@
 using namespace std;
 
 int Board[SIZE_Y][SIZE_X];
-enum { MOVEBLOCK = 0, SHADOWBLOCK, FIXBLOCK, WALL, DEADLINE, EMPTY };
+enum { EMPTY = 0, MOVEBLOCK, DEADLINE, SHADOWBLOCK, WALL, FIXBLOCK };
 
 void InitGameBoard()
 {
@@ -31,7 +31,7 @@ void PrintGameBoard()
 			switch (Board[y][x]) {
 			case EMPTY:
 				Gotoxy(x, y);
-				cout << " ";
+				cout << "  ";
 				break;
 			case WALL:
 				Gotoxy(x, y);

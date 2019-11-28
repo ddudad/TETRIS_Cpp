@@ -159,6 +159,8 @@ int blockX = 0, blockY = 0, blockLotation = 0, blockType = 0;
 enum { EMPTY=0, MOVEBLOCK, DEADLINE, SHADOWBLOCK, WALL, FIXBLOCK};	//열거형은 다른 파일에 있다고 알려주는 법을 모르겠음 여기서 또 선언함
 bool FlagNeedNewBlock = FALSE;										//블록이 고정돼서 새로운 블럭이 필요한 경우를 알려주는 플래그
 bool FlagCrash = FALSE;							//AutoDrop() 블록 충돌이 있는 경우를 알려주는 플래그(블록이 충돌해도 좌우 움직이는 경우를 체크하기 위해 사용하는 플래그)
+bool FlagHarddrop = FALSE;
+int level, countDeleteLine, comboDeleteLine, gameSpeed, bestScore, score;
 
 void NewBlockMaker()
 {
@@ -266,6 +268,10 @@ void KeyboardController()
 		else {
 			switch (key) {
 			case SPACE:
+				FlagHarddrop = TRUE;
+				while (FlagCrash != TRUE) {
+					AutoDrop();
+				}
 				break;
 			}
 		}
@@ -305,6 +311,9 @@ void LineCheckDestroy()
 		}
 
 		if (LineCheck == SIZE_X - 2) {
+			countDeleteLine++;
+			comboDeleteLine++;
+
 			for (int k = y; k > 1; k--) {
 				for (int l = 1; l < SIZE_X - 1; l++) {
 					if (Board[k - 1][l] != DEADLINE) {
@@ -318,6 +327,134 @@ void LineCheckDestroy()
 		}
 		else{
 			y--;
+		}
+	}
+	ScoreManager();
+	comboDeleteLine = 0;
+}
+
+void SpeedManager()
+{
+	if (countDeleteLine < 10) {
+		level = 1;
+		gameSpeed = 75;
+		return;
+	}
+	else if (countDeleteLine < 20) {
+		level = 2;
+		gameSpeed = 45;
+		return;
+	}
+	else if (countDeleteLine < 30) {
+		level = 3;
+		gameSpeed = 35;
+		return;
+	}
+	else if (countDeleteLine < 40) {
+		level = 4;
+		gameSpeed = 30;
+		return;
+	}
+	else if (countDeleteLine < 50) {
+		level = 5;
+		gameSpeed = 25;
+		return;
+	}
+	else if (countDeleteLine < 60) {
+		level = 6;
+		gameSpeed = 20;
+		return;
+	}
+	else if (countDeleteLine < 70) {
+		level = 7;
+		gameSpeed = 15;
+		return;
+	}
+	else {
+		level = 8;
+		gameSpeed = 10;
+	}
+}
+
+void ScoreManager()
+{
+	score += 5;
+	switch (comboDeleteLine) {
+	case 1:
+		score += 50;
+		break;
+	case 2:
+		score += 150;
+		break;
+	case 3:
+		score += 300;
+		break;
+	case 4:
+		score += 500;
+		break;
+	default:
+		break;
+	}
+}
+
+void ResetInformation()
+{
+	level = 1;
+	score = 0;
+	countDeleteLine = 0;
+	gameSpeed = 50;
+}
+
+void PrintInformation()
+{
+	Gotoxy(15, 10);
+	cout << "BestScore: " << bestScore;
+
+	Gotoxy(15, 12);
+	cout << "Score: " << score;
+
+	Gotoxy(15, 14);
+	cout << "DeleteLine: " << countDeleteLine;
+
+	Gotoxy(15, 16);
+	cout << "Level: " << level;
+}
+
+void PrintGameOver()
+{
+	for (int y = 0; y < SIZE_Y - 1; y++) {
+		for (int x = 1; x < SIZE_X - 1; x++) {
+			Board[y][x] = EMPTY;
+		}
+	}
+	PrintGameBoard();
+
+	Gotoxy(4, 12);
+	cout << "Game Over";
+
+	Gotoxy(2, 14);
+	cout << "Press Any Button";
+
+	Sleep(500);
+
+	while (_kbhit()) {
+		_getch();
+	}
+
+	_getch();
+}
+
+void GameOverCheck()
+{
+	for (int x = 1; x < SIZE_X - 2; x++) {
+		if (Board[1][x] == FIXBLOCK) {
+			PrintGameOver();
+			system("cls");
+
+			ResetInformation();
+
+			PrintGameBoard();
+			PrintInformation();
 		}
 	}
 }

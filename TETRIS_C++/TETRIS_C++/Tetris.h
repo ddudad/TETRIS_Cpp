@@ -1,5 +1,6 @@
 #pragma once
 
+#include<iostream>
 #include<time.h>
 #include<conio.h>
 #include"Tetris.h"
@@ -10,6 +11,8 @@
 #define UP 72
 #define SPACE 32
 
+using namespace std;
+
 void NewBlockMaker();
 void BlockMove(int inputX, int inputY, int inputZ);	//x,y축 이동값, z회전값
 bool CrashCheck(int inputX, int inputY, int inputZ);	//x,y축 이동값, z 회전값
@@ -17,3 +20,9 @@ void BlockFix();
 void KeyboardController();
 void AutoDrop();
 void LineCheckDestroy();
+void SpeedManager();
+void ScoreManager();
+void ResetInformation();
+void PrintInformation();
+void GameOverCheck();
+void PrintGameOver();
